@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/loading.dart';
 import 'screens/home.dart';
-import 'screens/drug_search.dart';
+import 'screens/drug_search_customer.dart';
+import 'screens/drug_search_chemist.dart';
 import 'utils/themes.dart';
 
 void main() {
@@ -73,7 +74,7 @@ class MainScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const SearchPage(),
+                            builder: (context) => const CSearchPage(),
                           ),
                         );
                       },

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:yakpharm/utils/themes.dart';
 import 'package:yakpharm/utils/hardcoding.dart';
-import 'package:yakpharm/screens/stock_check.dart';
+import 'package:yakpharm/screens/review.dart'; 
 
-class DrugDetailPage extends StatefulWidget {
-  const DrugDetailPage({Key? key}) : super(key: key);
+class CDrugDetailPage extends StatefulWidget {
+  const CDrugDetailPage({Key? key}) : super(key: key);
 
   @override
-  _DrugDetailPageState createState() => _DrugDetailPageState();
+  _CDrugDetailPageState createState() => _CDrugDetailPageState();
 }
 
-class _DrugDetailPageState extends State<DrugDetailPage>
+class _CDrugDetailPageState extends State<CDrugDetailPage>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
@@ -106,27 +106,6 @@ class _DrugDetailPageState extends State<DrugDetailPage>
                   ),
                   const SizedBox(width: 10), // 약간의 간격
                   // 재고 찾기 버튼
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const StockCheckPage()),
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.mainColor, // 버튼 색상
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                    child: Text(
-                      "재고 찾기",
-                      style: AppFonts.regular.copyWith(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -141,9 +120,9 @@ class _DrugDetailPageState extends State<DrugDetailPage>
                 ),
               ),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildActionButton(Icons.share, "공유"),
+                  _buildActionButton(Icons.reviews_outlined, "리뷰 보기"),
                   Container(
                     width: 1,
                     height: 20,
@@ -183,20 +162,30 @@ class _DrugDetailPageState extends State<DrugDetailPage>
 
   Widget _buildActionButton(IconData icon, String label) {
     return Expanded(
-      child: Center(
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, color: Colors.blue),
-            const SizedBox(width: 8),
-            Text(
-              label,
-              style: AppFonts.regular.copyWith(
-                fontSize: 16,
-                color: AppColors.maintext,
+      child: GestureDetector(
+        onTap: () {
+          if (label == "리뷰 보기") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ReviewPage()),
+            );
+          }
+        },
+        child: Center(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, color: Colors.blue),
+              const SizedBox(width: 8),
+              Text(
+                label,
+                style: AppFonts.regular.copyWith(
+                  fontSize: 16,
+                  color: AppColors.maintext,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -222,7 +211,6 @@ class _DrugDetailPageState extends State<DrugDetailPage>
             style: AppFonts.regular.copyWith(
               fontSize: 18,
               color: isSelected ? AppColors.maintext : const Color(0xFF808080),
-              fontWeight: isSelected ? FontWeight.normal : FontWeight.normal,
             ),
           ),
         ),
@@ -231,7 +219,6 @@ class _DrugDetailPageState extends State<DrugDetailPage>
   }
 
   Widget _buildTabContent() {
-    // 각 탭의 내용
     List<Widget> tabContents = [
       _buildBasicInfoTab(),
       _buildPrescriptionTab(),
@@ -246,25 +233,8 @@ class _DrugDetailPageState extends State<DrugDetailPage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildDrugInfoSection(
-            title: "효능, 효과",
-            content: [DrugDetailTexts.efficacyContent],
-          ),
-          _buildDrugInfoSection(
-            title: "주요 성분",
-            content: [DrugDetailTexts.ingredientsContent],
-          ),
-          _buildDrugInfoSection(
-            title: "복용법",
-            content: [
-              DrugDetailTexts.dosageForAbove15,
-              DrugDetailTexts.dosageFor8To15
-            ],
-          ),
-          _buildDrugInfoSection(
-            title: "제조/수입사",
-            content: [DrugDetailTexts.manufacturerContent],
-          ),
+          _buildDrugInfoSection("효능, 효과", [DrugDetailTexts.efficacyContent]),
+          _buildDrugInfoSection("주요 성분", [DrugDetailTexts.ingredientsContent]),
         ],
       ),
     );
@@ -276,10 +246,7 @@ class _DrugDetailPageState extends State<DrugDetailPage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildDrugInfoSection(
-            title: DrugDetailTexts.prescriptionTitle,
-            content: DrugDetailTexts.prescriptionPoints,
-          ),
+          _buildDrugInfoSection("복약 정보", DrugDetailTexts.prescriptionPoints),
         ],
       ),
     );
@@ -291,19 +258,13 @@ class _DrugDetailPageState extends State<DrugDetailPage>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildDrugInfoSection(
-            title: DrugWarningTexts.prohibitionTitle,
-            content: DrugWarningTexts.prohibitionContent,
-          ),
+          _buildDrugInfoSection("주의사항", DrugWarningTexts.prohibitionContent),
         ],
       ),
     );
   }
 
-  Widget _buildDrugInfoSection({
-    required String title,
-    required List<String> content,
-  }) {
+  Widget _buildDrugInfoSection(String title, List<String> content) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Column(
@@ -317,20 +278,19 @@ class _DrugDetailPageState extends State<DrugDetailPage>
             ),
           ),
           const SizedBox(height: 8),
-          ...content.map((point) => Padding(
-                padding: const EdgeInsets.only(bottom: 4.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("• ", style: TextStyle(fontSize: 16)),
-                    Expanded(
-                      child: Text(
-                        point,
-                        style: AppFonts.regular.copyWith(
-                          fontSize: 18,
-                          height: 1.5,
-                          color: AppColors.maintext,
-                        ),
+          ...content.map(
+            (point) => Padding(
+              padding: const EdgeInsets.only(bottom: 4.0),
+              child: Row(
+                children: [
+                  const Text("• "),
+                  Expanded(
+                    child: Text(
+                      point,
+                      style: AppFonts.regular.copyWith(
+                        fontSize: 18,
+                        color: AppColors.maintext,
+                      ),
                       ),
                     ),
                   ],

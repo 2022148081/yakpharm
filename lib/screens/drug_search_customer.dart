@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yakpharm/utils/hardcoding.dart';
 import 'package:yakpharm/utils/themes.dart'; // AppFonts 사용
-import 'package:yakpharm/screens/drug_detail.dart'; // DrugDetailPage import
+import 'package:yakpharm/screens/drug_detail_costomer.dart'; // DrugDetailPage import
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);

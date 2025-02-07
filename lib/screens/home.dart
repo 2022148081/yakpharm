@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yakpharm/screens/chatbot_screen.dart';
-import 'package:yakpharm/screens/drug_search.dart';
+import 'package:yakpharm/screens/drug_search_customer.dart';
 import 'package:yakpharm/utils/themes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -9,6 +9,24 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context); // 뒤로가기 동작
+          },
+        ),
+        centerTitle: true,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(0.5),
+          child: Container(
+            height: 0.5,
+            color: const Color(0xFFD5D5D5),
+          ),
+        ),
+      ),
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: Padding(
@@ -128,40 +146,6 @@ class CustomButton extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class PharmacistServicePage extends StatelessWidget {
-  const PharmacistServicePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('약사용 서비스'),
-        backgroundColor: AppColors.mainColor,
-      ),
-      body: const Center(
-        child: Text('약사용 서비스 페이지'),
-      ),
-    );
-  }
-}
-
-class UserServicePage extends StatelessWidget {
-  const UserServicePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('일반 사용자 서비스'),
-        backgroundColor: AppColors.mainColor,
-      ),
-      body: const Center(
-        child: Text('일반 사용자용 서비스 페이지'),
       ),
     );
   }
