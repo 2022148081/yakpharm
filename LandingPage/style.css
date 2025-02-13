@@ -1,0 +1,138 @@
+/* ✅ 기본 스타일 */
+body {
+    font-family: "Afacad", sans-serif;
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+/* ✅ 첫 번째 페이지: Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 12%;
+    text-align: left;
+    background-color: #65c4ff;
+    color: white;
+    overflow: hidden;
+}
+
+/* JAMMIT 로고 */
+.hero .logo {
+    font-family: "Afacad", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 100px;
+    margin-top: -20px;
+    opacity: 0;
+    animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* YakPharm 로고 */
+.hero .yakpharm-logo {
+    width: 320px;
+    height: auto;
+    margin-bottom: 100px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 1s ease-out forwards 0.5s;
+}
+
+/* "당신을 위한 스마트한 약국 네트워크" */
+.hero .subtitle {
+    font-size: 20px;
+    margin-top: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: slideUp 1s ease-out forwards 0.8s;
+}
+
+/* ✅ 스크롤 반응형 문구 스타일 */
+.key-features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300vh;
+    background-color: white;
+    color: #aaa;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 100vh;
+    position: relative;
+}
+
+.feature-text {
+    opacity: 0.3;
+    transition: color 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.feature-text.active {
+    color: black;
+    opacity: 1;
+}
+
+/* ✅ 배경 이미지 적용 */
+.map-section {
+    background-color: white;
+    height: 100vh;
+    padding: 50px;
+}
+
+/* ✅ 전체 컨테이너 (좌우 분할) */
+.content-container {
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* ✅ 좌측: 텍스트 컨테이너 */
+.text-container {
+    flex: 1;
+    text-align: left;
+    color: black;
+}
+
+.text-container h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.text-container p {
+    font-size: 22px;
+    line-height: 1.6;
+}
+
+/* ✅ 우측: 기능 컨테이너 */
+.function-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ✅ 애니메이션 효과 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
