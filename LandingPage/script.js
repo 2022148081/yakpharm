@@ -1,18 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const featureTexts = document.querySelectorAll(".feature-text span");
-    let currentIndex = 0;
+    const features = document.querySelectorAll(".feature-text");
 
-    function updateFeatureText() {
-        featureTexts.forEach((text, index) => {
-            if (index === currentIndex) {
-                text.classList.add("active");
+    function checkScroll() {
+        let scrollPosition = window.scrollY + window.innerHeight * 0.7; // 스크롤 위치 조정
+
+        features.forEach((feature, index) => {
+            let sectionTop = feature.getBoundingClientRect().top + window.scrollY;
+
+            if (scrollPosition >= sectionTop) {
+                feature.classList.add("active");
             } else {
-                text.classList.remove("active");
+                feature.classList.remove("active");
             }
         });
-
-        currentIndex = (currentIndex + 1) % featureTexts.length;
     }
 
-    setInterval(updateFeatureText, 2000); // 2초마다 강조 변경
+    window.addEventListener("scroll", checkScroll);
+    checkScroll(); // 초기 실행
 });

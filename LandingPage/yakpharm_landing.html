@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yakpharm 랜딩페이지</title>
 
-    <!-- ✅ Google Fonts (Afacad, Noto Sans KR) -->
+    <!-- ✅ Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Afacad:wght@400;700&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
@@ -13,34 +13,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ✅ 첫 번째 페이지: 메인 히어로 -->
+
+    <!-- ✅ 첫 번째 페이지: Hero Section -->
     <header class="hero">
         <div class="logo">JAMMIT</div>
         <img src="assets/YakPharm logo.png" alt="YakPharm Logo" class="yakpharm-logo">
         <p class="subtitle">당신을 위한 스마트한 약국 네트워크</p>
     </header>
 
-    <!-- ✅ 핵심 기능 문구 (한 줄로 연결) -->
+    <!-- ✅ 핵심 기능 문구 (한 줄 유지) -->
     <section class="key-features">
-        <div class="feature-text">
-            <span id="feature1" class="active">필요한 약, 가장 가까운 약국에서 찾다.</span>
-            <span id="feature2">성분이 궁금할 땐 AI 논문 요약을.</span>
-            <span id="feature3">약사의 리뷰로 더욱 신뢰할 수 있는 선택을.</span>
-        </div>
+        <p class="feature-text">
+            <span>필요한 약, 가장 가까운 약국에서 찾다.</span>
+            <span>성분이 궁금할 땐 AI 논문 요약을.</span>
+            <span>약사의 리뷰로 더욱 신뢰할 수 있는 선택을.</span>
+        </p>
     </section>
 
     <!-- ✅ 두 번째 페이지: 약국 위치 검색 -->
     <section class="mvp-page map-section">
-        <div class="content-container">
-            <div class="text-container">
+        <div class="map-container">
+            <div class="map-left">
                 <h2>약국 위치 검색</h2>
                 <p>Yakpharm에서는 원하는 약품을 검색하면, <br>그 약을 보유한 약국을 지도에서 바로 확인할 수 있습니다.</p>
             </div>
-            <div class="function-container">
-                <div class="search-container">
-                    <input type="text" id="drugSearch" placeholder="약품명을 입력하세요">
-                    <button onclick="searchPharmacies()">검색</button>
-                </div>
+            <div class="map-right">
                 <div id="map"></div>
             </div>
         </div>
@@ -99,8 +96,6 @@
 
     <!-- ✅ JavaScript -->
     <script src="script.js"></script>
-    <script async defer 
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap">
-    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap"></script>
 </body>
 </html>
